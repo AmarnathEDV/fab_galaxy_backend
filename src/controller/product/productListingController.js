@@ -12,7 +12,7 @@ const Wishlist = require("../../database/wishlist/wishlistSchema.js");
 const Collection = require("../../database/collections/collectionSchema.js");
 const Promotion = require("../../database/promotion/promotionSchema.js");
 const Draft = require("../../database/draft/draftSchema.js");
-const ActivityLog = require("../../database/logs/logsSchema.js");
+const ActivityLog = require("../../database/logSchema/logsSchema.js");
 
 module.exports.createProduct = async (req, res) => {
   try {

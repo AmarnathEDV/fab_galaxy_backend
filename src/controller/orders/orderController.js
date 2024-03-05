@@ -12,7 +12,7 @@ const Product = require("../../database/product/productSchema.js");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const exceljs = require("exceljs");
 const Report = require("../../database/reports/reportsSchema.js");
-const ActivityLog = require("../../database/logs/logsSchema.js");
+const ActivityLog = require("../../database/logSchema/logsSchema.js");
 
 const nodemailer = require("nodemailer");
 const { editSuccessEmail } = require("../../Emails/email.js");

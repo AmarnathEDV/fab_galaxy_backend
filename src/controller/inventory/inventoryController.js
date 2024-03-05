@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const SubCategory = require("../../database/categories/subCategorySchema.js");
 const Product = require("../../database/product/productSchema.js");
-const ActivityLog = require("../../database/logs/logsSchema.js");
+const ActivityLog = require("../../database/logSchema/logsSchema.js");
 
 module.exports.getInventoryCount = async (req, res) => {
   try {

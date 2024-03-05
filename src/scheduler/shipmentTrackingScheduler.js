@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-cron.schedule("*/15 * * * * *", async function () {
+cron.schedule("*/300 * * * * *", async function () {
   try {
     const orders = await Order.find({
       "products.shipped": { $nin: ["pending", "cancelled", "Delivered"] },
