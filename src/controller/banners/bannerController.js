@@ -1,13 +1,13 @@
-const Collection = require("../../database/collections/collectionSchema");
+const Collection = require("../../database/collections/collectionSchema.js");
 
-const Banner = require("../../database/banner/bannerSchema");
-const OtherBanner = require("../../database/banner/otherBannerSchema");
-const SubCategory = require("../../database/categories/subCategorySchema");
-const Product = require("../../database/product/productSchema");
-const Promotion = require("../../database/promotion/promotionSchema");
-const FAQ = require("../../database/faq/faqSchema");
-const Rating = require("../../database/rating/ratingSchema");
-const Occasion = require("../../database/occasion/occasionSchema");
+const Banner = require("../../database/banner/bannerSchema.js");
+const OtherBanner = require("../../database/banner/otherBannerSchema.js");
+const SubCategory = require("../../database/categories/subCategorySchema.js");
+const Product = require("../../database/product/productSchema.js");
+const Promotion = require("../../database/promotion/promotionSchema.js");
+const FAQ = require("../../database/faq/faqSchema.js");
+const Rating = require("../../database/rating/ratingSchema.js");
+const Occasion = require("../../database/occasion/occasionSchema.js");
 
 module.exports.createMainBanner = async (req, res) => {
   try {

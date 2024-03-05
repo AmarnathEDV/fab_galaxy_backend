@@ -1,8 +1,8 @@
 const cron = require("node-cron");
-const redisClient = require("../redis/redisInstance");
-const Cart = require("../database/cart/cartSchema");
-const Product = require("../database/product/productSchema");
-const Order = require("../database/orders/orderSchema");
+const redisClient = require("../redis/redisInstance.js");
+const Cart = require("../database/cart/cartSchema.js");
+const Product = require("../database/product/productSchema.js");
+const Order = require("../database/orders/orderSchema.js");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 cron.schedule("*/3 * * * * *", async function () {

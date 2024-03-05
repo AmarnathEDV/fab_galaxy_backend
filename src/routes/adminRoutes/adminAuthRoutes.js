@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const userAuth = require("../../middlewares/auth/userAuth");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
-const { adminLogin } = require("../../controller/admin/adminAuth");
-const Admin = require("../../Database/admin/adminSchema");
+const { adminLogin } = require("../../controller/admin/adminAuth.js");
+const Admin = require("../../Database/admin/adminSchema.js");
 
 const {
   fetchAllSubAdmin,
@@ -13,7 +13,7 @@ const {
   changePassword,
   createAdmin,
   createSubAdmin,
-} = require("../../controller/admin/adminManageController");
+} = require("../../controller/admin/adminManageController.js");
 // router.post("/create-admin",createAdmin)
 
 router.post("/create-subadmin", userAuth, createSubAdmin);

@@ -1,6 +1,6 @@
-const Product = require("../../database/product/productSchema");
-const Promotion = require("../../database/promotion/promotionSchema");
-const redisClient = require("../../redis/redisInstance");
+const Product = require("../../database/product/productSchema.js");
+const Promotion = require("../../database/promotion/promotionSchema.js");
+const redisClient = require("../../redis/redisInstance.js");
 
 module.exports.createPromotion = async (req, res) => {
   try {

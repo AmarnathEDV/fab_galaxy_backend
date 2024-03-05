@@ -1,6 +1,6 @@
 const { default: axios } = require("axios");
-const User = require("../../database/user/userSchema");
-const Order = require("../../database/orders/orderSchema");
+const User = require("../../database/user/userSchema.js");
+const Order = require("../../database/orders/orderSchema.js");
 
 module.exports.trackOrder = async (req, res) => {
   try {

@@ -1,5 +1,5 @@
-const { checkout, getCheckoutPageLoad } = require("../../controller/checkout/checkoutController");
-const userAuth = require("../../middlewares/auth/userAuth");
+const { checkout, getCheckoutPageLoad } = require("../../controller/checkout/checkoutController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

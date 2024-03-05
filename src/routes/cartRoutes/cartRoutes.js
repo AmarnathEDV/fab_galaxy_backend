@@ -5,9 +5,9 @@ const {
   updateQuantityInCart,
   moveToCart,
   updatedSelectedCart,
-} = require("../../controller/cart/cartController");
+} = require("../../controller/cart/cartController.js");
 
-const userAuth = require("../../middlewares/auth/userAuth");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

@@ -26,9 +26,9 @@ const {
   getAllReturnDeliveredOrders,
   cancelOrder,
 
-} = require("../../controller/orders/orderController");
+} = require("../../controller/orders/orderController.js");
 
-const userAuth = require("../../middlewares/auth/userAuth");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

@@ -1,5 +1,5 @@
-const ContactRequest = require("../../database/contactRequest/contactRequestSchema");
-const userAuth = require("../../middlewares/auth/userAuth");
+const ContactRequest = require("../../database/contactRequest/contactRequestSchema.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

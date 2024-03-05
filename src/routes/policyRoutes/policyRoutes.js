@@ -1,11 +1,11 @@
 const {
   trackOrder,
-} = require("../../controller/orderTracking/orderTrackingController");
+} = require("../../controller/orderTracking/orderTrackingController.js");
 const {
   editPolicy,
   getPolicy,
-} = require("../../controller/policy/policyController");
-const userAuth = require("../../middlewares/auth/userAuth");
+} = require("../../controller/policy/policyController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

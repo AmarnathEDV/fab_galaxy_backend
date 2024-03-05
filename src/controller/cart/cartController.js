@@ -1,6 +1,6 @@
-const Cart = require("../../database/cart/cartSchema");
-const Product = require("../../database/product/productSchema");
-const Wishlist = require("../../database/wishlist/wishlistSchema");
+const Cart = require("../../database/cart/cartSchema.js");
+const Product = require("../../database/product/productSchema.js");
+const Wishlist = require("../../database/wishlist/wishlistSchema.js");
 
 const isQuantityValid = (sizeDetails, requestedQuantity) => {
   // Assuming 'STOCK' is the key for available stock in sizeDetails

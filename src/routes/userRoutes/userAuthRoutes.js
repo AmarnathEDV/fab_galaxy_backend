@@ -1,7 +1,7 @@
-const { addAddress, editAddress, deleteAddress } = require("../../controller/user/userAddressController");
-const { userLogin, createPublicUser, verifyOTP, resendOTP, editPublicUser, verifyEditOTP, changePassword } = require("../../controller/user/userAuthController");
-const userAuth = require("../../middlewares/auth/userAuth");
-const { userValidator } = require("../../middlewares/validators/userValidators");
+const { addAddress, editAddress, deleteAddress } = require("../../controller/user/userAddressController.js");
+const { userLogin, createPublicUser, verifyOTP, resendOTP, editPublicUser, verifyEditOTP, changePassword } = require("../../controller/user/userAuthController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
+const { userValidator } = require("../../middlewares/validators/userValidators.js");
 
 const router = require("express").Router();
 

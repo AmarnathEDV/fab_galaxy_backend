@@ -1,6 +1,6 @@
-const Collection = require("../../database/collections/collectionSchema");
-const Product = require("../../database/product/productSchema");
-const redisClient = require("../../redis/redisInstance");
+const Collection = require("../../database/collections/collectionSchema.js");
+const Product = require("../../database/product/productSchema.js");
+const redisClient = require("../../redis/redisInstance.js");
 
 module.exports.createCollection = async (req, res) => {
   try {

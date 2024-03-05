@@ -1,5 +1,5 @@
-const { createOrderIntent, stripeWebhoook } = require("../../controller/payments/paymentController");
-const userAuth = require("../../middlewares/auth/userAuth");
+const { createOrderIntent, stripeWebhoook } = require("../../controller/payments/paymentController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

@@ -1,5 +1,5 @@
-const Occasion = require("../../database/occasion/occasionSchema");
-const userAuth = require("../../middlewares/auth/userAuth");
+const Occasion = require("../../database/occasion/occasionSchema.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

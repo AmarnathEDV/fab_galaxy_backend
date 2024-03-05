@@ -1,5 +1,5 @@
-const { getAllReports } = require("../../controller/orders/orderController");
-const userAuth = require("../../middlewares/auth/userAuth");
+const { getAllReports } = require("../../controller/orders/orderController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

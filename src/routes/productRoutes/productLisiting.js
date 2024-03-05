@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const userAuth = require("../../middlewares/auth/userAuth");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 const {
   createProduct,
   getAllProductsForSubAdmin,
@@ -23,7 +23,7 @@ const {
   discardListing,
   getDraftDetails,
   getCargoryID,
-} = require("../../controller/product/productListingController");
+} = require("../../controller/product/productListingController.js");
 
 router.get("/", productListing);
 router.get("/attributes",getAllAttributes)

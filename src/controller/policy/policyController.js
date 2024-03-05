@@ -1,4 +1,4 @@
-const Policy = require("../../database/policy/policySchema");
+const Policy = require("../../database/policy/policySchema.js");
 
 module.exports.editPolicy = async (req, res) => {
   try {

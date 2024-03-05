@@ -1,6 +1,6 @@
 
-const { trackOrder } = require("../../controller/orderTracking/orderTrackingController");
-const userAuth = require("../../middlewares/auth/userAuth");
+const { trackOrder } = require("../../controller/orderTracking/orderTrackingController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

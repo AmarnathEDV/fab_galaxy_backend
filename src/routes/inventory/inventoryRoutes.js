@@ -7,8 +7,8 @@ const {
   getOutOfStockProducts,
   getPausedStocks,
   getAllSubcategory,
-} = require("../../controller/inventory/inventoryController");
-const userAuth = require("../../middlewares/auth/userAuth");
+} = require("../../controller/inventory/inventoryController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

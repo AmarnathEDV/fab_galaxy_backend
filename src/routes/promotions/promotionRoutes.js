@@ -7,8 +7,8 @@ const {
     deletePromotion,
     updateProductDiscount,
     removeProductFromPromotion,
-  } = require("../../controller/promotion/promotionController");
-  const userAuth = require("../../middlewares/auth/userAuth");
+  } = require("../../controller/promotion/promotionController.js");
+  const userAuth = require("../../middlewares/auth/userAuth.js");
   
   const router = require("express").Router();
   

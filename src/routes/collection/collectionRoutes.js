@@ -5,8 +5,8 @@ const {
   getAllCollections,
   getCollectionDetails,
   deleteProductFromCollection,
-} = require("../../controller/collection/collectionController");
-const userAuth = require("../../middlewares/auth/userAuth");
+} = require("../../controller/collection/collectionController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

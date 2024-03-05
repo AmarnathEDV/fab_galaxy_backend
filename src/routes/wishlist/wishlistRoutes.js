@@ -1,7 +1,7 @@
-const { userLogin, createPublicUser, verifyOTP, resendOTP } = require("../../controller/user/userAuthController");
-const { addToWishlist, getWishList, removeFromWishlist } = require("../../controller/wishlist/wishListController");
-const userAuth = require("../../middlewares/auth/userAuth");
-const { userValidator } = require("../../middlewares/validators/userValidators");
+const { userLogin, createPublicUser, verifyOTP, resendOTP } = require("../../controller/user/userAuthController.js");
+const { addToWishlist, getWishList, removeFromWishlist } = require("../../controller/wishlist/wishListController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
+const { userValidator } = require("../../middlewares/validators/userValidators.js");
 
 const router = require("express").Router();
 

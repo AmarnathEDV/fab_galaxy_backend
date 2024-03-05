@@ -1,4 +1,4 @@
-const FAQ = require("../../database/faq/faqSchema");
+const FAQ = require("../../database/faq/faqSchema.js");
 
 module.exports.createFAQ = async (req, res) => {
   try {

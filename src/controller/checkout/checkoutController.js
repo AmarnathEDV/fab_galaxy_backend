@@ -1,9 +1,9 @@
 const { default: axios } = require("axios");
-const Cart = require("../../database/cart/cartSchema");
-const Order = require("../../database/orders/orderSchema");
-const Product = require("../../database/product/productSchema");
-const Promotion = require("../../database/promotion/promotionSchema");
-const { orderReceivedEmailTemplate } = require("../../Emails/email");
+const Cart = require("../../database/cart/cartSchema.js");
+const Order = require("../../database/orders/orderSchema.js");
+const Product = require("../../database/product/productSchema.js");
+const Promotion = require("../../database/promotion/promotionSchema.js");
+const { orderReceivedEmailTemplate } = require("../../Emails/email.js");
 
 const nodemailer = require("nodemailer");
 

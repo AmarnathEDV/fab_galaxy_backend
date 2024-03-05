@@ -1,5 +1,5 @@
-const { createFAQ, getFAQ, updateFAQPosition, deleteFAQ } = require("../../controller/faq/faqController");
-const userAuth = require("../../middlewares/auth/userAuth");
+const { createFAQ, getFAQ, updateFAQPosition, deleteFAQ } = require("../../controller/faq/faqController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

@@ -1,11 +1,11 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const Admin = require("../../Database/admin/adminSchema");
-const MainCategory = require("../../database/categories/mainCategorySchema");
-const SubCategory = require("../../database/categories/subCategorySchema");
-const Promotion = require("../../database/promotion/promotionSchema");
-const Attribute = require("../../database/attributes/attributeSchema");
+const Admin = require("../../Database/admin/adminSchema.js");
+const MainCategory = require("../../database/categories/mainCategorySchema.js");
+const SubCategory = require("../../database/categories/subCategorySchema.js");
+const Promotion = require("../../database/promotion/promotionSchema.js");
+const Attribute = require("../../database/attributes/attributeSchema.js");
 
 module.exports.fetchAllCategory = async (req, res) => {
   try {

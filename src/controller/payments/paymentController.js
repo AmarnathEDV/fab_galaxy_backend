@@ -1,10 +1,10 @@
 const { default: axios } = require("axios");
-const Cart = require("../../database/cart/cartSchema");
-const Order = require("../../database/orders/orderSchema");
-const Product = require("../../database/product/productSchema");
-const Promotion = require("../../database/promotion/promotionSchema");
-const redisClient = require("../../redis/redisInstance");
-const { orderReceivedEmailTemplate, editSuccessEmail } = require("../../Emails/email");
+const Cart = require("../../database/cart/cartSchema.js");
+const Order = require("../../database/orders/orderSchema.js");
+const Product = require("../../database/product/productSchema.js");
+const Promotion = require("../../database/promotion/promotionSchema.js");
+const redisClient = require("../../redis/redisInstance.js");
+const { orderReceivedEmailTemplate, editSuccessEmail } = require("../../Emails/email.js");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 

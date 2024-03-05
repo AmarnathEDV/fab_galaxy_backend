@@ -1,4 +1,4 @@
-const User = require("../../database/user/userSchema");
+const User = require("../../database/user/userSchema.js");
 
 module.exports.addAddress = async (req, res) => {
   try {

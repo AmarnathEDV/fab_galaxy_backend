@@ -1,21 +1,21 @@
-const Order = require("../../database/orders/orderSchema");
+const Order = require("../../database/orders/orderSchema.js");
 const moment = require("moment");
-const Cart = require("../../database/cart/cartSchema");
+const Cart = require("../../database/cart/cartSchema.js");
 const fs = require("fs").promises;
 const path = require("path");
 const axios = require("axios");
 const { PDFDocument } = require("pdf-lib");
 const { default: mongoose } = require("mongoose");
-const { shippingService } = require("../../utils/services/shippingService");
-const Rating = require("../../database/rating/ratingSchema");
-const Product = require("../../database/product/productSchema");
+const { shippingService } = require("../../utils/services/shippingService.js");
+const Rating = require("../../database/rating/ratingSchema.js");
+const Product = require("../../database/product/productSchema.js");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const exceljs = require("exceljs");
-const Report = require("../../database/reports/reportsSchema");
-const ActivityLog = require("../../database/logs/logSchema");
+const Report = require("../../database/reports/reportsSchema.js");
+const ActivityLog = require("../../database/logs/logSchema.js");
 
 const nodemailer = require("nodemailer");
-const { editSuccessEmail } = require("../../Emails/email");
+const { editSuccessEmail } = require("../../Emails/email.js");
 
 const transporter = nodemailer.createTransport({
   host: "s588.sgp8.mysecurecloudhost.com", // Use the hostname or webmail URL

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const userAuth = require("../../middlewares/auth/userAuth");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 const path = require("path");
 const multer = require("multer");
 const sharp = require("sharp"); // Image processing library for compression

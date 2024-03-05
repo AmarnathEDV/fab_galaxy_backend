@@ -1,18 +1,18 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const Admin = require("../../Database/admin/adminSchema");
-const MainCategory = require("../../database/categories/mainCategorySchema");
-const SubCategory = require("../../database/categories/subCategorySchema");
-const Product = require("../../database/product/productSchema");
+const Admin = require("../../Database/admin/adminSchema.js");
+const MainCategory = require("../../database/categories/mainCategorySchema.js");
+const SubCategory = require("../../database/categories/subCategorySchema.js");
+const Product = require("../../database/product/productSchema.js");
 const redisClient = require("../../redis/redisInstance");
 const { default: mongoose } = require("mongoose");
 const { object } = require("joi");
-const Wishlist = require("../../database/wishlist/wishlistSchema");
-const Collection = require("../../database/collections/collectionSchema");
-const Promotion = require("../../database/promotion/promotionSchema");
-const Draft = require("../../database/draft/draftSchema");
-const ActivityLog = require("../../database/logs/logSchema");
+const Wishlist = require("../../database/wishlist/wishlistSchema.js");
+const Collection = require("../../database/collections/collectionSchema.js");
+const Promotion = require("../../database/promotion/promotionSchema.js");
+const Draft = require("../../database/draft/draftSchema.js");
+const ActivityLog = require("../../database/logs/logSchema.js");
 
 module.exports.createProduct = async (req, res) => {
   try {

@@ -1,10 +1,10 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const Admin = require("../../Database/admin/adminSchema");
-const redisClient = require("../../redis/redisInstance");
+const Admin = require("../../Database/admin/adminSchema.js");
+const redisClient = require("../../redis/redisInstance.js");
 
-const Wishlist = require("../../database/wishlist/wishlistSchema");
+const Wishlist = require("../../database/wishlist/wishlistSchema.js");
 
 module.exports.addToWishlist = async (req, res) => {
   try {

@@ -1,7 +1,7 @@
 const {
   getAllAnalytics, getActivityLogs,
-} = require("../../controller/analyticsController/analyticsController");
-const userAuth = require("../../middlewares/auth/userAuth");
+} = require("../../controller/analyticsController/analyticsController.js");
+const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const router = require("express").Router();
 

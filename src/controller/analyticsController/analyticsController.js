@@ -1,12 +1,12 @@
-const PageVisit = require("../../database/analytics/pageVisitSchema");
-const Session = require("../../database/analytics/sessionSchema");
-const MainCategory = require("../../database/categories/mainCategorySchema");
-const SubCategory = require("../../database/categories/subCategorySchema");
-const ActivityLog = require("../../database/logs/logSchema");
-const Order = require("../../database/orders/orderSchema");
-const Product = require("../../database/product/productSchema");
-const Rating = require("../../database/rating/ratingSchema");
-const User = require("../../database/user/userSchema");
+const PageVisit = require("../../database/analytics/pageVisitSchema.js");
+const Session = require("../../database/analytics/sessionSchema.js");
+const MainCategory = require("../../database/categories/mainCategorySchema.js");
+const SubCategory = require("../../database/categories/subCategorySchema.js");
+const ActivityLog = require("../../database/logs/logSchema.js");
+const Order = require("../../database/orders/orderSchema.js");
+const Product = require("../../database/product/productSchema.js");
+const Rating = require("../../database/rating/ratingSchema.js");
+const User = require("../../database/user/userSchema.js");
 
 const getOrderAnalyticsData = async () => {
   try {
