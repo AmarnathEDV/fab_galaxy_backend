@@ -52,6 +52,7 @@ const generateSessionId = () => {
 
 app.use(
   session({
+    name: "your-session-name",
     secret: "secret-key-value-anything",
     resave: false,
     saveUninitialized: true,
@@ -106,10 +107,6 @@ app.use(destroyInactiveSessions);
 
 app.post("/api/v1/user-session", async (req, res) => {
   let { pathname } = req.body;
-
-  const userIp = req.socket.remoteAddress;
-
-  console.log("ip"+userIp)
 
   console.log(pathname);
 
