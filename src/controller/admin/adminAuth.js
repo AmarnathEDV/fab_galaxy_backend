@@ -1,7 +1,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const adminSchema = require("../../Database/admin/adminSchema");
 
-const Admin = require("../../Database/admin/adminSchema");
+
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET_KET_JWT);
 };
@@ -11,7 +12,7 @@ const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    await Admin.findOne({ email })
+    await adminSchema.findOne({ email })
       .then(async (user) => {
         const match = await bcrypt.compare(password, user.password);
         if (match && match.isBlocked !== true && match.isDelete !== 1) {
