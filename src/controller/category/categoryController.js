@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const Admin = require("../../Database/admin/adminSchema.js");
+const Admin = require("../../database/admin/adminSchema.js");
 const MainCategory = require("../../database/categories/mainCategorySchema.js");
 const SubCategory = require("../../database/categories/subCategorySchema.js");
 const Promotion = require("../../database/promotion/promotionSchema.js");

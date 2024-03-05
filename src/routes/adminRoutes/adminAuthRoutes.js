@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const userAuth = require("../../middlewares/auth/userAuth.js");
 
 const { adminLogin } = require("../../controller/admin/adminAuth.js");
-const Admin = require("../../Database/admin/adminSchema.js");
+const Admin = require("../../database/admin/adminSchema.js");
 
 const {
   fetchAllSubAdmin,

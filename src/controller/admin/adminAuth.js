@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const adminSchema = require("../../Database/admin/adminSchema.js");
+const adminSchema = require("../../database/admin/adminSchema.js");
 
 
 const createToken = (_id) => {
