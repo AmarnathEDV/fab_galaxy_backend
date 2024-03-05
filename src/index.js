@@ -107,6 +107,10 @@ app.use(destroyInactiveSessions);
 app.post("/api/v1/user-session", async (req, res) => {
   let { pathname } = req.body;
 
+  const userIp = req.socket.remoteAddress;
+
+  console.log("ip"+userIp)
+
   console.log(pathname);
 
   const sessionId = req.session.id;
@@ -320,41 +324,41 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-app.get("/", async (req, res) => {
-  try {
-    const order = await Order.findById("65dd8c4ee252c77771f95746").populate(
-      "products.productId"
-    );
+// app.get("/", async (req, res) => {
+//   try {
+//     const order = await Order.findById("65dd8c4ee252c77771f95746").populate(
+//       "products.productId"
+//     );
 
-    const emailArray = ["ckramarnath@gmail.com"];
+//     const emailArray = ["ckramarnath@gmail.com"];
 
-    // Generate 100 unique email addresses
-    // for (let i = 1; i <= 100; i++) {
-    //   const email = `test${i}@example.com`;
-    //   emailArray.push(email);
-    // }
+//     // Generate 100 unique email addresses
+//     // for (let i = 1; i <= 100; i++) {
+//     //   const email = `test${i}@example.com`;
+//     //   emailArray.push(email);
+//     // }
 
-    const mailOptions = {
-      from: "dev.amarnath@ekkdigitalvyapar.com",
-      to: emailArray,
-      subject: "Order has been Placed., Testing",
-      html: orderReceivedEmailTemplate(order),
-    };
-    await transporter.sendMail(mailOptions, (error, info) => {
-      console.log(info);
-      if (error) {
-        console.error("Error sending email:", error);
-      } else {
-        console.log("Email sent:", info.response);
-        res.send(info);
-      }
-    });
-    res.send(mailOptions);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error });
-  }
-});
+//     const mailOptions = {
+//       from: "dev.amarnath@ekkdigitalvyapar.com",
+//       to: emailArray,
+//       subject: "Order has been Placed., Testing",
+//       html: orderReceivedEmailTemplate(order),
+//     };
+//     await transporter.sendMail(mailOptions, (error, info) => {
+//       console.log(info);
+//       if (error) {
+//         console.error("Error sending email:", error);
+//       } else {
+//         console.log("Email sent:", info.response);
+//         res.send(info);
+//       }
+//     });
+//     res.send(mailOptions);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ error });
+//   }
+// });
 
 // app.get("/", checkPincodeAvailablilty)
 
