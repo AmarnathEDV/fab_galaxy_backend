@@ -1352,7 +1352,7 @@ module.exports.orderReceivedEmailTemplate = (order) => {
     <td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
       <div class="product-entry">
         <img src="${
-          "https://mfz63x5d-5000.inc1.devtunnels.ms/api/v1/upload/" +
+          "https://fab-galaxy-backend.onrender.com/api/v1/upload/" +
           items.productId.images[0]
         }" alt="legacy"
           style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
@@ -1842,7 +1842,7 @@ module.exports.orderTemplate = (order, title) => {
     <td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
       <div class="product-entry">
         <img src="${
-          "https://mfz63x5d-5000.inc1.devtunnels.ms/api/v1/upload/" +
+          "https://fab-galaxy-backend.onrender.com/api/v1/upload/" +
           items.productId.images[0]
         }" alt="legacy"
           style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
