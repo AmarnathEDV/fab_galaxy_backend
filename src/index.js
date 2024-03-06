@@ -56,8 +56,9 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: false,
+      secure: true,
       maxAge: 3600000, // 1hours validity for reference
+      sameSite : "none"
     },
     genid: function (req) {
       if (req.headers["x-no-session"]) {
