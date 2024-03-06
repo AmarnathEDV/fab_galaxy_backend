@@ -44,6 +44,7 @@ app.use(
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
+    
   })
 );
 
@@ -57,17 +58,19 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: true, // Note: Secure should be enabled if your server uses HTTPS
+      secure: true, // Enable if using HTTPS
       maxAge: 3600000, // 1 hour validity
       sameSite: "none",
+      priority: "high",
+      httpOnly: false,
     },
     genid: function (req) {
       if (req.headers["x-no-session"]) {
         return null;
       }
 
-      if (req.path === "/api/v1/user-session") {
-        console.log("check val" + req.session);
+      if (req.path === "/api/v1/user-session" && !req.session) {
+        console.log("Generating session ID");
         return generateSessionId();
       } else {
         return null;
@@ -79,7 +82,6 @@ app.use(
 const destroyInactiveSessions = async (req, res, next) => {
   try {
     const sessionId = req.session.id;
-
     // Find the session in the database
     const sessionData = await Session.findOne({ sessionId });
     if (!sessionData) {
@@ -110,6 +112,7 @@ app.use("/api/v1/user-session", destroyInactiveSessions);
 app.post("/api/v1/user-session", async (req, res) => {
   let { pathname } = req.body;
 
+  console.log(req.session);
   console.log(pathname);
 
   let sessionId = req.session.id;
