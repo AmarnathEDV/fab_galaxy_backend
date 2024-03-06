@@ -60,7 +60,7 @@ app.use(
     cookie: {
       secure: false, // Enable if using HTTPS
       maxAge: 3600000, // 1 hour validity
-      sameSite: "strict",
+      sameSite: "none",
       priority: "high",
     },
     genid: function (req) {
