@@ -53,7 +53,6 @@ const generateSessionId = () => {
 
 app.use(
   session({
-    name: "sessionIdUnique",
     secret: "secret-key-value-anything",
     resave: false,
     saveUninitialized: true,
@@ -67,6 +66,7 @@ app.use(
       }
 
       if (req.path === "/api/v1/user-session") {
+        console.log("check val" + req.session);
         return generateSessionId();
       } else {
         return null;
@@ -104,9 +104,7 @@ const destroyInactiveSessions = async (req, res, next) => {
 };
 
 // Add the middleware to destroy inactive sessions
-app.use("/api/v1/user-session",destroyInactiveSessions);
-
-
+app.use("/api/v1/user-session", destroyInactiveSessions);
 
 app.post("/api/v1/user-session", async (req, res) => {
   let { pathname } = req.body;
