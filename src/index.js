@@ -104,24 +104,16 @@ const destroyInactiveSessions = async (req, res, next) => {
 };
 
 // Add the middleware to destroy inactive sessions
-app.use(destroyInactiveSessions);
+app.use("/api/v1/user-session",destroyInactiveSessions);
+
+
 
 app.post("/api/v1/user-session", async (req, res) => {
   let { pathname } = req.body;
 
   console.log(pathname);
 
-  let sessionId = req.session.userTrack;
-
-  console.log(req.ip);
-
-  if (sessionId) {
-    console.log(sessionId);
-  } else {
-    req.session.userTrack = generateSessionId();
-    sessionId = req.session.userTrack;
-    console.log(sessionId)
-  }
+  let sessionId = req.session.id;
 
   try {
     const userAgent = req.headers["user-agent"];
