@@ -40,6 +40,7 @@ app.use(
       "https://mfz63x5d-3001.inc1.devtunnels.ms/",
       "https://fab-galaxy-testing.netlify.app",
       "https://mfz63x5d-3000.inc1.devtunnels.ms",
+      "https://mfz63x5d-65404.inc1.devtunnels.ms",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
@@ -52,7 +53,7 @@ const generateSessionId = () => {
 
 app.use(
   session({
-    name: "your-session-name",
+    name: "sessionIdUnique",
     secret: "secret-key-value-anything",
     resave: false,
     saveUninitialized: true,
@@ -110,7 +111,17 @@ app.post("/api/v1/user-session", async (req, res) => {
 
   console.log(pathname);
 
-  const sessionId = req.session.id;
+  let sessionId = req.session.userTrack;
+
+  console.log(req.ip);
+
+  if (sessionId) {
+    console.log(sessionId);
+  } else {
+    req.session.userTrack = generateSessionId();
+    sessionId = req.session.userTrack;
+    console.log(sessionId)
+  }
 
   try {
     const userAgent = req.headers["user-agent"];
