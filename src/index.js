@@ -2,6 +2,9 @@ require("./database/db.js");
 require("./scheduler/paymentCheckScheduler.js");
 require("./scheduler/shipmentTrackingScheduler.js");
 
+const https = require('https');
+const fs = require('fs');
+
 const express = require("express");
 const session = require("express-session");
 const app = express();
@@ -44,7 +47,6 @@ app.use(
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
-    
   })
 );
 
@@ -58,7 +60,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: false, // Enable if using HTTPS
+      secure: true, // Enable if using HTTPS
       maxAge: 3600000, // 1 hour validity
       sameSite: "none",
       priority: "high",
@@ -267,6 +269,11 @@ const Order = require("./database/orders/orderSchema.js");
 const { default: axios } = require("axios");
 const Session = require("./database/analytics/sessionSchema.js");
 const PageVisit = require("./database/analytics/pageVisitSchema.js");
+
+const options = {
+  key: fs.readFileSync('tesing-domain.work.gd.key'),
+  cert: fs.readFileSync('tesing-domain.work.gd.cer')
+};
 
 app.use(compression());
 
@@ -722,6 +729,8 @@ redisClient.connect();
 
 redisClient.ping();
 
-const server = app.listen(5000, function () {
-  console.log("Server is running on port 5000 ");
+const server = https.createServer(options, app);
+
+server.listen(443, function () {
+  console.log("Server is running on port 443");
 });
