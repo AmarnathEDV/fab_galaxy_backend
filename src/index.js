@@ -2,9 +2,6 @@ require("./database/db.js");
 require("./scheduler/paymentCheckScheduler.js");
 require("./scheduler/shipmentTrackingScheduler.js");
 
-const https = require('https');
-const fs = require('fs');
-
 const express = require("express");
 const session = require("express-session");
 const app = express();
@@ -43,7 +40,6 @@ app.use(
       "https://mfz63x5d-3001.inc1.devtunnels.ms/",
       "https://fab-galaxy-testing.netlify.app",
       "https://mfz63x5d-3000.inc1.devtunnels.ms",
-      "https://mfz63x5d-65404.inc1.devtunnels.ms",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
@@ -60,18 +56,15 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: true, // Enable if using HTTPS
-      maxAge: 3600000, // 1 hour validity
-      sameSite: "none",
-      priority: "high",
+      secure: false,
+      maxAge: 3600000, // 1hours validity for reference
     },
     genid: function (req) {
       if (req.headers["x-no-session"]) {
         return null;
       }
 
-      if (req.path === "/api/v1/user-session" && !req.session) {
-        console.log("Generating session ID");
+      if (req.path === "/api/v1/user-session") {
         return generateSessionId();
       } else {
         return null;
@@ -83,6 +76,7 @@ app.use(
 const destroyInactiveSessions = async (req, res, next) => {
   try {
     const sessionId = req.session.id;
+
     // Find the session in the database
     const sessionData = await Session.findOne({ sessionId });
     if (!sessionData) {
@@ -108,15 +102,14 @@ const destroyInactiveSessions = async (req, res, next) => {
 };
 
 // Add the middleware to destroy inactive sessions
-app.use("/api/v1/user-session", destroyInactiveSessions);
+app.use(destroyInactiveSessions);
 
 app.post("/api/v1/user-session", async (req, res) => {
   let { pathname } = req.body;
 
-  console.log(req.session);
   console.log(pathname);
 
-  let sessionId = req.session.id;
+  const sessionId = req.session.id;
 
   try {
     const userAgent = req.headers["user-agent"];
@@ -269,11 +262,6 @@ const Order = require("./database/orders/orderSchema.js");
 const { default: axios } = require("axios");
 const Session = require("./database/analytics/sessionSchema.js");
 const PageVisit = require("./database/analytics/pageVisitSchema.js");
-
-const options = {
-  key: fs.readFileSync('tesing-domain.work.gd.key'),
-  cert: fs.readFileSync('tesing-domain.work.gd.cer')
-};
 
 app.use(compression());
 
@@ -729,8 +717,6 @@ redisClient.connect();
 
 redisClient.ping();
 
-const server = https.createServer(options, app);
-
-server.listen(8443, function () {
-  console.log("Server is running on port 443");
+const server = app.listen(5000, function () {
+  console.log("Server is running on port 5000 ");
 });
