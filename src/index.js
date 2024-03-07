@@ -736,6 +736,6 @@ redisClient.ping();
 // });
 const server = https.createServer(options, app);
 
-server.listen(5001, function () {
+server.listen(8443, function () {
     console.log('Server is running on port 5001');
 });
