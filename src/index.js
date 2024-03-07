@@ -2,6 +2,17 @@ require("./database/db.js");
 require("./scheduler/paymentCheckScheduler.js");
 require("./scheduler/shipmentTrackingScheduler.js");
 
+
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/fab.galaxy.edugo.website/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/fab.galaxy.edugo.website/fullchain.pem')
+};
+
+
+
 const express = require("express");
 const session = require("express-session");
 const app = express();
@@ -718,6 +729,13 @@ redisClient.connect();
 
 redisClient.ping();
 
-const server = app.listen(5001, function () {
-  console.log("Server is running on port 5000 ");
+
+
+// const server = app.listen(5001, function () {
+//   console.log("Server is running on port 5000 ");
+// });
+const server = https.createServer(options, app);
+
+server.listen(5001, function () {
+    console.log('Server is running on port 5001');
 });
