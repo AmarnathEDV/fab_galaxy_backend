@@ -51,6 +51,7 @@ app.use(
       "https://mfz63x5d-3001.inc1.devtunnels.ms/",
       "https://fab-galaxy-testing.netlify.app",
       "https://mfz63x5d-3000.inc1.devtunnels.ms",
+      "https://admin-fab-galaxy.netlify.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
