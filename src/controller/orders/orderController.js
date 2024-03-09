@@ -1685,11 +1685,17 @@ const updateOrderStatus = async () => {
 
   for (const order of orders) {
     for (const product of order.products) {
-      if (product.shipped !== "pending" && product.shipped !== "cancelled") {
+      if (
+        product.shipped !== "pending" &&
+        product.shipped !== "cancelled" &&
+        product.shipped !== "RTO"
+      ) {
         const referenceNumber = product.shippingDetails.reference_number;
         const packageStatus = await shippingService.trackShipment(
           referenceNumber
         );
+
+        console.log(packageStatus.trackHeader.strStatus);
 
         if (!packageStatus) {
           continue;
@@ -1704,6 +1710,11 @@ const updateOrderStatus = async () => {
 
         if (packageStatus) {
           product.shipped = packageStatus.trackHeader.strStatus;
+          const newTest = new Test({
+            value: packageStatus,
+          });
+
+          await newTest.save();
         }
 
         if (
@@ -1715,10 +1726,72 @@ const updateOrderStatus = async () => {
             ...packageStatus,
             deliveredDate: Date.now(),
           };
+
+          const existingOrder = await Order.findById(order._id)
+            .populate("products.productId")
+            .populate("customer");
+
+          const emailData = { ...existingOrder._doc };
+
+          emailData.products = [product];
+
+          emailData.products[0].productId = await Product.findById(
+            product.productId
+          );
+
+          const mailOptions = {
+            from: "dev.amarnath@ekkdigitalvyapar.com",
+            to: existingOrder.customer.email,
+            subject: "Order has been Delivered.",
+            html: orderTemplate(emailData, "Order has been delivered."),
+          };
+
+          await transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              console.error("Error sending email:", error);
+            } else {
+              console.log("Email sent:", info.response);
+            }
+          });
         }
 
-        //note : After getting the possible values of status,  update the order accrodinly
-        ///////  with the logs included.
+        if (
+          packageStatus &&
+          packageStatus.trackHeader.strStatus === "Not Delivered"
+        ) {
+          product.status = "RTO";
+          product.shipped = "RTO";
+
+          const existingOrder = await Order.findById(order._id)
+            .populate("products.productId")
+            .populate("customer");
+
+          const emailData = { ...existingOrder._doc };
+
+          emailData.products = [product];
+
+          emailData.products[0].productId = await Product.findById(
+            product.productId
+          );
+
+          const mailOptions = {
+            from: "dev.amarnath@ekkdigitalvyapar.com",
+            to: existingOrder.customer.email,
+            subject: "Order Was not Delivered.",
+            html: orderTemplate(emailData, "Order was not delivered."),
+          };
+
+          await transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              console.error("Error sending email:", error);
+            } else {
+              console.log("Email sent:", info.response);
+            }
+          });
+        }
+
+        //note : After getting the possible values of status,  update the order accordingly
+        //////// with the logs included.
 
         await order.save();
       }

@@ -32,7 +32,7 @@ cron.schedule("*/300 * * * * *", async function () {
 
     for (const order of orders) {
       for (const product of order.products) {
-        if (product.shipped !== "pending" && product.shipped !== "cancelled") {
+        if (product.shipped !== "pending" && product.shipped !== "cancelled" && product.shipped !== "RTO") {
           const referenceNumber = product.shippingDetails.reference_number;
           const packageStatus = await shippingService.trackShipment(
             referenceNumber
@@ -87,6 +87,41 @@ cron.schedule("*/300 * * * * *", async function () {
               to: existingOrder.customer.email,
               subject: "Order has been Delivered.",
               html: orderTemplate(emailData, "Order has been delivered."),
+            };
+
+            await transporter.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                console.error("Error sending email:", error);
+              } else {
+                console.log("Email sent:", info.response);
+              }
+            });
+          }
+
+          if (
+            packageStatus &&
+            packageStatus.trackHeader.strStatus === "Not Delivered"
+          ) {
+            product.status = "RTO";
+            product.shipped = "RTO";
+
+            const existingOrder = await Order.findById(order._id)
+              .populate("products.productId")
+              .populate("customer");
+
+            const emailData = { ...existingOrder._doc };
+
+            emailData.products = [product];
+
+            emailData.products[0].productId = await Product.findById(
+              product.productId
+            );
+
+            const mailOptions = {
+              from: "dev.amarnath@ekkdigitalvyapar.com",
+              to: existingOrder.customer.email,
+              subject: "Order Was not Delivered.",
+              html: orderTemplate(emailData, "Order was not delivered."),
             };
 
             await transporter.sendMail(mailOptions, (error, info) => {
