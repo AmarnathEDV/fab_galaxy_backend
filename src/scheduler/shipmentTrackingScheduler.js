@@ -32,7 +32,11 @@ cron.schedule("*/300 * * * * *", async function () {
 
     for (const order of orders) {
       for (const product of order.products) {
-        if (product.shipped !== "pending" && product.shipped !== "cancelled" && product.shipped !== "RTO") {
+        if (
+          product.shipped !== "pending" &&
+          product.shipped !== "cancelled" &&
+          product.shipped !== "RTO"
+        ) {
           const referenceNumber = product.shippingDetails.reference_number;
           const packageStatus = await shippingService.trackShipment(
             referenceNumber
@@ -45,8 +49,9 @@ cron.schedule("*/300 * * * * *", async function () {
           }
 
           if (
-            packageStatus &&
-            packageStatus.trackHeader.strStatus === product.shipped
+            (packageStatus &&
+              packageStatus.trackHeader.strStatus === product.shipped) ||
+            product.shipped === "RTO"
           ) {
             continue;
           }

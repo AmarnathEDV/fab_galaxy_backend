@@ -1702,8 +1702,9 @@ const updateOrderStatus = async () => {
         }
 
         if (
-          packageStatus &&
-          packageStatus.trackHeader.strStatus === product.shipped
+          (packageStatus &&
+            packageStatus.trackHeader.strStatus === product.shipped) ||
+          product.shipped === "RTO"
         ) {
           continue;
         }
