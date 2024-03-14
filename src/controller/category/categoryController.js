@@ -41,7 +41,6 @@ module.exports.fetchAllCategory = async (req, res) => {
     const mainCategory = await MainCategory.find().populate("subcategories");
     res.status(200).json({ mainCategory });
   } catch (err) {
-
     res.status(500).json({ error: err });
   }
 };
@@ -56,11 +55,33 @@ module.exports.getHeaderCategory = async (req, res) => {
       toDate: { $gte: now },
     });
 
-
-
     res.status(200).json({ load: mainCategory, promotion });
   } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
 
+module.exports.getAllSubCategoryBanner = async (req, res) => {
+  try {
+    const { category } = req.query;
+
+    let load = await SubCategory.find({});
+    let main = await MainCategory.find({});
+    if (load) {
+      load.push(...main);
+      load = load.map((item) => {
+        return {
+          ...item._doc,
+          id: item._doc._id,
+          _id: { ...item._doc, id: item._id.toString() },
+        };
+      });
+
+      return res.send({ load, type: "home" });
+    } else {
+      return res.status(404).json({ message: "No subCategories found" });
+    }
+  } catch (err) {
     res.status(500).json({ error: err });
   }
 };
@@ -95,7 +116,6 @@ module.exports.getAllSubCategory = async (req, res) => {
       return res.status(404).json({ message: "No subCategories found" });
     }
   } catch (err) {
-    
     res.status(500).json({ error: err });
   }
 };
@@ -151,7 +171,6 @@ module.exports.updateCategory = async (req, res) => {
 
     return res.status(404).json({ message: "Invalid request" });
   } catch (err) {
-    
     res.status(500).json({ error: err });
   }
 };
@@ -175,7 +194,6 @@ module.exports.updateCategoryBanner = async (req, res) => {
     });
     return res.status(200).json({ category });
   } catch (err) {
-    
     res.status(500).json({ error: err });
   }
 };
@@ -196,19 +214,18 @@ module.exports.getCategoryDetails = async (req, res) => {
     const category = await MainCategory.findOne({ _id: id });
     return res.status(200).json({ load: category });
   } catch (err) {
-    
     res.status(500).json({ error: err });
   }
 };
 
 module.exports.getAllAttributes = async (req, res) => {
   try {
-    const attributes = await Attribute.findOne({ name: "OCCASION" }).populate("values");
+    const attributes = await Attribute.findOne({ name: "OCCASION" }).populate(
+      "values"
+    );
 
-    return res.status(200).json({ attributes : attributes.values });
-
+    return res.status(200).json({ attributes: attributes.values });
   } catch (err) {
-    
     res.status(500).json({ error: err });
   }
 };

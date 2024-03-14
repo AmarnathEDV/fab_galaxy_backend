@@ -2,13 +2,15 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userAuth = require("../../middlewares/auth/userAuth.js"); 
-const { fetchAllCategory, getHeaderCategory, getAllSubCategory, updateCategory, updateCategoryBanner, getCategoryDetails, getAllAttributes } = require("../../controller/category/categoryController.js");
+const { fetchAllCategory, getHeaderCategory, getAllSubCategory, updateCategory, updateCategoryBanner, getCategoryDetails, getAllAttributes, getAllSubCategoryBanner } = require("../../controller/category/categoryController.js");
 
 router.get("/", userAuth, fetchAllCategory); 
 
 router.get("/get_all", getHeaderCategory)
 
 router.get("/home-collection", userAuth, getAllSubCategory)
+
+router.get("/home-collection-banner", userAuth, getAllSubCategoryBanner)
 
 router.get("/update", userAuth,updateCategory)
 
