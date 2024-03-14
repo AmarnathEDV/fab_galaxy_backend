@@ -64,6 +64,10 @@ module.exports.getAllBanner = async (req, res) => {
 
     categoryBanners.push(...mainCatBanner);
 
+    categoryBanners.sort((a, b) => {
+      return b.updatedAt - a.updatedAt; // Descending order
+    });
+
     let collectionBanners = await Collection.findOne({ name: "New Arrivals" })
       .populate({
         path: "products.productId",
