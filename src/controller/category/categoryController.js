@@ -136,6 +136,13 @@ module.exports.updateCategory = async (req, res) => {
 
     if (image) {
       if (home) {
+        const subExist = await SubCategory.findOne({ _id: id });
+        if (!subExist) {
+          const category = await MainCategory.findByIdAndUpdate(id, {
+            homeBanner: image,
+          });
+          return res.status(200).json({ category });
+        }
         const category = await SubCategory.findByIdAndUpdate(id, {
           homeBanner: image,
         });
@@ -157,6 +164,13 @@ module.exports.updateCategory = async (req, res) => {
         });
         return res.status(200).json({ category });
       } else if (home) {
+        const subExist = await SubCategory.findOne({ _id: id });
+        if (!subExist) {
+          const category = await MainCategory.findByIdAndUpdate(id, {
+            isHomeListed: status,
+          });
+          return res.status(200).json({ category });
+        }
         const category = await SubCategory.findByIdAndUpdate(id, {
           isHomeListed: status,
         });

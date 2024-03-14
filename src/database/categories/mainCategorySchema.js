@@ -18,7 +18,7 @@ const mainCategorySchema = new mongoose.Schema(
     video: {
       type: String,
     },
-    isListed :Boolean,
+    isListed: Boolean,
     subcategories: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -27,6 +27,8 @@ const mainCategorySchema = new mongoose.Schema(
     ],
     companyDetails: {},
     views: [{ sessionId: String }],
+    homeBanner: String,
+    isHomeListed: Boolean,
   },
   { timestamps: true }
 );
