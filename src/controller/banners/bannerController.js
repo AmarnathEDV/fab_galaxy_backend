@@ -8,6 +8,7 @@ const Promotion = require("../../database/promotion/promotionSchema.js");
 const FAQ = require("../../database/faq/faqSchema.js");
 const Rating = require("../../database/rating/ratingSchema.js");
 const Occasion = require("../../database/occasion/occasionSchema.js");
+const MainCategory = require("../../database/categories/mainCategorySchema.js");
 
 module.exports.createMainBanner = async (req, res) => {
   try {
@@ -56,6 +57,12 @@ module.exports.getAllBanner = async (req, res) => {
     const categoryBanners = await SubCategory.find({ isHomeListed: true }).sort(
       { updatedAt: 1 }
     );
+
+    const mainCatBanner = await MainCategory.find({ isHomeListed: true }).sort({
+      updatedAt: 1,
+    });
+
+    categoryBanners.push(...mainCatBanner);
 
     let collectionBanners = await Collection.findOne({ name: "New Arrivals" })
       .populate({
