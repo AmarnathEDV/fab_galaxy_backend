@@ -65,7 +65,8 @@ module.exports.getAllBanner = async (req, res) => {
     categoryBanners.push(...mainCatBanner);
 
     categoryBanners.sort((a, b) => {
-      return b.updatedAt - a.updatedAt; // Descending order
+      return a.updatedAt - b.updatedAt; // Ascending order
+      // To sort in descending order, swap 'a.updatedAt' and 'b.updatedAt'
     });
 
     let collectionBanners = await Collection.findOne({ name: "New Arrivals" })
