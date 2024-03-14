@@ -54,7 +54,7 @@ module.exports.getAllBanner = async (req, res) => {
     });
 
     const categoryBanners = await SubCategory.find({ isHomeListed: true }).sort(
-      { updatedAt: -1 }
+      { updatedAt: 1 }
     );
 
     let collectionBanners = await Collection.findOne({ name: "New Arrivals" })
