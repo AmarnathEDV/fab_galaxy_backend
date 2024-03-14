@@ -53,7 +53,9 @@ module.exports.getAllBanner = async (req, res) => {
       };
     });
 
-    const categoryBanners = await SubCategory.find({ isHomeListed: true });
+    const categoryBanners = await SubCategory.find({ isHomeListed: true }).sort(
+      { updatedAt: -1 }
+    );
 
     let collectionBanners = await Collection.findOne({ name: "New Arrivals" })
       .populate({
@@ -321,7 +323,10 @@ module.exports.getAllBanner = async (req, res) => {
       sizeDetails: items.sizeDetails,
     }));
 
-    const videos = await Product.find({ status : true}, { title: 1, _id: 1, images: 1 });
+    const videos = await Product.find(
+      { status: true },
+      { title: 1, _id: 1, images: 1 }
+    );
 
     const ratings = await Rating.find({}).populate("productId");
 
